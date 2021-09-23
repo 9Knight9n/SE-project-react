@@ -11,7 +11,11 @@ import { getItem } from "../../util";
 import axios from "axios";
 import { Empty, Popconfirm } from "antd";
 import { toast } from "react-toastify";
-
+import wildVilla from "../../../assets/img/homepage-bg.jpg";
+import img1 from "../../../assets/img/homepage-bg-1.jpg";
+import img2 from "../../../assets/img/homepage-bg-2.jpg";
+import img3 from "../../../assets/img/homepage-bg-3.jpg";
+import img4 from "../../../assets/img/homepage-bg-4.jpg";
 let cardSize = 0;
 
 class VillaCarousel extends Component {
@@ -22,7 +26,48 @@ class VillaCarousel extends Component {
   }
 
   state = {
-    cards: [],
+    cards: [
+      {
+        id: 0,
+        name: "Luxury villa",
+        country: "Iran",
+        state: "Tehran",
+        city: "Tehran",
+        default_image_url: img1,
+        rate__avg: 1,
+        price_per_night: 12,
+      },
+      {
+        id: 1,
+        name: "Luxury villa",
+        country: "Iran",
+        state: "Tehran",
+        city: "Tehran",
+        default_image_url: img2,
+        rate__avg: 1,
+        price_per_night: 12,
+      },
+      {
+        id: 2,
+        name: "Luxury villa",
+        country: "Iran",
+        state: "Tehran",
+        city: "Tehran",
+        default_image_url: img3,
+        rate__avg: 1,
+        price_per_night: 12,
+      },
+      {
+        id: 3,
+        name: "Luxury villa",
+        country: "Iran",
+        state: "Tehran",
+        city: "Tehran",
+        default_image_url: img4,
+        rate__avg: 1,
+        price_per_night: 12,
+      },
+    ],
     empty: true,
     // cardSize:2,
     arr: [],
@@ -37,35 +82,35 @@ class VillaCarousel extends Component {
     }
   }
 
-  async componentDidMount() {
-    await this.loadCardList(this.props.url);
-  }
+  // async componentDidMount() {
+  //   await this.loadCardList(this.props.url);
+  // }
 
-  async loadCardList(url) {
-    let config = {
-      method: "get",
-      url: url
-        .toString()
-        .concat(this.props.addNum ? "?number_of_villa=100" : ""),
-      headers: {
-        Authorization: "Token " + getItem("user-token"),
-      },
-    };
-    let response = await axios(config)
-      .then(function (response) {
-        // console.log(JSON.stringify(response.data));
-        return response.data.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-        return [];
-      });
-    console.log("============", url, response);
-    // if (response.length>0)
-    this.setState({ cards: response });
-    // else
-    //     this.setState({cards:[]})
-  }
+  // async loadCardList(url) {
+  //   let config = {
+  //     method: "get",
+  //     url: url
+  //       .toString()
+  //       .concat(this.props.addNum ? "?number_of_villa=100" : ""),
+  //     headers: {
+  //       Authorization: "Token " + getItem("user-token"),
+  //     },
+  //   };
+  //   let response = await axios(config)
+  //     .then(function (response) {
+  //       // console.log(JSON.stringify(response.data));
+  //       return response.data.data;
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       return [];
+  //     });
+  //   console.log("============", url, response);
+  //   // if (response.length>0)
+  //   this.setState({ cards: response });
+  //   // else
+  //   //     this.setState({cards:[]})
+  // }
 
   hidePlace = async (id, status) => {
     await axios
@@ -98,34 +143,19 @@ class VillaCarousel extends Component {
   };
 
   renderList() {
-    // console.log('////',this.state.cards)
-    // console.log('////',typeof this.state.cards.length)
-    // console.log('////',typeof this.state.cardSize)
-    // console.log('////',parseInt(this.state.cards.length )/ parseInt(this.state.cardsSize))
     let arr = [];
     for (let k = 0; k <= this.state.cards.length; k++) {
-      // console.log('inside')
       let cardGroups = [];
-      // console.log(typeof this.state.cardSize)
-      // console.log(this.state.cardSize)
-      // console.log(-5 < parseInt(this.state.cardsSize))
-      console.log(cardSize);
       for (let z = 0; z < cardSize; z++) {
-        // console.log('inside2')
-        console.log(this.state.cards);
         let card = this.state.cards[k * cardSize + z];
         if (!card) continue;
-        // console.log('passed')
-        // console.log(card)
         cardGroups = [
           ...cardGroups,
           <div className={"d-flex flex-column"}>
             <VillaCard
               name={card.name}
               id={card.villa_id}
-              src={API_BASE_URL.substr(0, API_BASE_URL.length - 1).concat(
-                card.default_image_url ? card.default_image_url : card.images[0]
-              )}
+              src={card.default_image_url}
               addr={card.country + ", " + card.state + ", " + card.city}
               cost={card.price_per_night}
               rate={card.rate__avg ? card.rate__avg : card.rate}

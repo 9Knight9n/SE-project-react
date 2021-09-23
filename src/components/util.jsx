@@ -21,11 +21,7 @@ export function valueIsNumber(value) {
 export function saveCredentials(userID, email, token, image, rememberMe) {
   if (rememberMe) {
     localStorage.setItem("user-email", email);
-    if (image)
-      localStorage.setItem(
-        "profileAvatar",
-        API_BASE_URL.substring(0, API_BASE_URL.length - 1) + image
-      );
+    if (image) localStorage.setItem("profileAvatar", image);
     localStorage.setItem("user-id", userID);
     localStorage.setItem("user-token", token);
     localStorage.setItem("user-remember-me", rememberMe);
