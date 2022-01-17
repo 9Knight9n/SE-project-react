@@ -10,6 +10,22 @@ import { API_BASE_URL, API_GET_SHOW_CHAT_INFO_AND_LIST } from "../constants";
 import { getItem } from "../util";
 import { toast } from "react-toastify";
 import moment from "moment";
+import defaultAvatar from '../../assets/img/StewartJames.jpg';
+
+
+let chatList = [
+  {
+    chat_id:5,
+    first_name:"Sajad",
+    last_name:"Naghizadeh",
+    image:null,
+    last_message:{
+      text:"Hello there!",
+      ctime:new Date(),
+    }
+  }
+]
+
 
 class Chat extends Component {
   constructor(props) {
@@ -35,7 +51,7 @@ class Chat extends Component {
     // //     console.log("Message received. ", payload);
     // //     // ...
     // // });
-    // this.loadChatList();
+    this.loadChatList();
   }
 
   state = {
@@ -50,26 +66,26 @@ class Chat extends Component {
   };
 
   loadChatList = async () => {
-    let chatList = await axios
-      .get(API_GET_SHOW_CHAT_INFO_AND_LIST, {
-        headers: {
-          Authorization: "Token ".concat(getItem("user-token")),
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("chat responde : ", res.data.data);
-          return res.data.data;
-          // this.loadData(res.data)
-        } else {
-          console.log("unknown status");
-          return [];
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        return [];
-      });
+    // let chatList = await axios
+    //   .get(API_GET_SHOW_CHAT_INFO_AND_LIST, {
+    //     headers: {
+    //       Authorization: "Token ".concat(getItem("user-token")),
+    //     },
+    //   })
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       console.log("chat responde : ", res.data.data);
+    //       return res.data.data;
+    //       // this.loadData(res.data)
+    //     } else {
+    //       console.log("unknown status");
+    //       return [];
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     return [];
+    //   });
     this.setState({ chatList });
   };
 
@@ -184,7 +200,7 @@ class Chat extends Component {
                   chat.image
                     ? API_BASE_URL.substr(0, API_BASE_URL.length - 1) +
                         chat.image
-                    : "https://homepages.cae.wisc.edu/~ece533/images/zelda.png"
+                    : defaultAvatar
                 )
               }
             >
@@ -194,7 +210,7 @@ class Chat extends Component {
                   chat.image
                     ? API_BASE_URL.substr(0, API_BASE_URL.length - 1) +
                       chat.image
-                    : "https://homepages.cae.wisc.edu/~ece533/images/zelda.png"
+                    : defaultAvatar
                 }
                 name={chat.first_name + " " + chat.last_name}
                 lastMessage={
