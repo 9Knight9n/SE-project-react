@@ -21,58 +21,12 @@ import csc from "country-state-city";
 import { Empty, Spin } from "antd";
 import { Select } from "antd";
 import { Option } from "antd/es/mentions";
-// import wildVilla from "../../assets/img/homepage-bg.jpg";
-import img1 from "../../assets/img/homepage-bg-1.jpg";
-import img2 from "../../assets/img/homepage-bg-2.jpg";
-import img3 from "../../assets/img/homepage-bg-3.jpg";
-import img4 from "../../assets/img/homepage-bg-4.jpg";
 
 const GeoCodio = require("geocodio-library-node");
 const geocoder = new GeoCodio("c616c01cb1104fe0d88ae0b003a06fb0dfdae80");
 let center = fromLonLat([-90.108862, 29.909324]);
 const states = csc.getAllStates();
-let cards0 = [
-  {
-    id: 0,
-    name: "Luxury villa",
-    country: "Iran",
-    state: "Tehran",
-    city: "Tehran",
-    default_image_url: img1,
-    rate__avg: 1,
-    price_per_night: 12,
-  },
-  {
-    id: 1,
-    name: "Luxury villa",
-    country: "Iran",
-    state: "Tehran",
-    city: "Tehran",
-    default_image_url: img2,
-    rate__avg: 1,
-    price_per_night: 12,
-  },
-  {
-    id: 2,
-    name: "Luxury villa",
-    country: "Iran",
-    state: "Tehran",
-    city: "Tehran",
-    default_image_url: img3,
-    rate__avg: 1,
-    price_per_night: 12,
-  },
-  {
-    id: 3,
-    name: "Luxury villa",
-    country: "Iran",
-    state: "Tehran",
-    city: "Tehran",
-    default_image_url: img4,
-    rate__avg: 1,
-    price_per_night: 12,
-  },
-];
+let cards0 = [];
 // [
 //     {
 //         id:0,
@@ -127,7 +81,7 @@ class HPSub1 extends Component {
     this.onMapCarouselChange = this.onMapCarouselChange.bind(this);
     this.mapGoTo = this.mapGoTo.bind(this);
     this.setCenterOnMove = this.setCenterOnMove.bind(this);
-    // this.loadCards = this.loadCards.bind(this);
+    this.loadCards = this.loadCards.bind(this);
     this.handleStateSelect = this.handleStateSelect.bind(this);
     this.mapMarkOnClick = this.mapMarkOnClick.bind(this);
   }
@@ -138,34 +92,34 @@ class HPSub1 extends Component {
     state: "Louisiana",
   };
 
-  // componentDidMount() {
-  //   this.loadCards();
-  // }
+  componentDidMount() {
+    this.loadCards();
+  }
 
-  // async loadCards() {
-  //   let param = "?page=1&number_of_villa=1000&state=" + this.state.state;
-  //   let config = {
-  //     method: "get",
-  //     url: API_SEARCH_VILLA + param,
-  //     headers: {
-  //       // 'Authorization': 'Token '.concat(getItem('user-token')),
-  //     },
-  //   };
-  //   console.log(config);
-  //   cards0 = await axios(config)
-  //     .then(function (response) {
-  //       // console.log(JSON.stringify(response.data));
-  //       console.log(response.data.data);
-  //       return response.data.data;
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //       return [];
-  //     });
-  //   // this.setState({cards:cardList})
-  //   console.log(cards0);
-  //   this.forceUpdate();
-  // }
+  async loadCards() {
+    let param = "?page=1&number_of_villa=1000&state=" + this.state.state;
+    let config = {
+      method: "get",
+      url: API_SEARCH_VILLA + param,
+      headers: {
+        // 'Authorization': 'Token '.concat(getItem('user-token')),
+      },
+    };
+    console.log(config);
+    cards0 = await axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        console.log(response.data.data);
+        return response.data.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+        return [];
+      });
+    // this.setState({cards:cardList})
+    console.log(cards0);
+    this.forceUpdate();
+  }
 
   renderAMap = (card, id) => {
     let fill = this.state.mapActiveIndex === id;
@@ -177,7 +131,7 @@ class HPSub1 extends Component {
 
       return (
         <RFeature
-          geometry={new Point(fromLonLat([0, 0]))}
+          geometry={new Point(fromLonLat([card.latitude, card.longitude]))}
           onClick={(e) =>
             e.map.getView().fit(e.target.getGeometry().getExtent(), {
               duration: 250,
@@ -219,13 +173,13 @@ class HPSub1 extends Component {
   };
 
   getMapCenter = () => {
-    let center = [0, 0];
-    // for (let z = 0; z < cards0.length; z++) {
-    //   if (cards0[z].id === this.state.mapActiveIndex) {
-    //     center = fromLonLat([cards0[z].x, cards0[z].y]);
-    //     break;
-    //   }
-    // }
+    let center = null;
+    for (let z = 0; z < cards0.length; z++) {
+      if (cards0[z].id === this.state.mapActiveIndex) {
+        center = fromLonLat([cards0[z].x, cards0[z].y]);
+        break;
+      }
+    }
     return center;
   };
 
@@ -402,7 +356,10 @@ class HPSub1 extends Component {
                       <VillaCard
                         name={card.name}
                         id={card.villa_id}
-                        src={card.default_image_url}
+                        src={API_BASE_URL.substr(
+                          0,
+                          API_BASE_URL.length - 1
+                        ).concat(card.default_image_url)}
                         addr={
                           card.country + ", " + card.state + ", " + card.city
                         }

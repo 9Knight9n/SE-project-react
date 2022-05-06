@@ -42,11 +42,6 @@ import Reserve1 from "../reservation/reserve1";
 import { none } from "ol/centerconstraint";
 import { toast } from "react-toastify";
 
-import img1 from "../../../assets/img/homepage-bg-1.jpg";
-import img2 from "../../../assets/img/homepage-bg-2.jpg";
-import img3 from "../../../assets/img/homepage-bg-3.jpg";
-import img4 from "../../../assets/img/homepage-bg-4.jpg";
-
 let center = fromLonLat([-90.108862, 29.909324]);
 
 class VillaProfile extends Component {
@@ -66,10 +61,10 @@ class VillaProfile extends Component {
       numOfDoubleBeds: 4,
       minCheckOut: "04/25/2021",
       showGallary: false,
-      palceCountry: "Iran",
-      placeState: "Tehran",
-      placeCity: "Tehran",
-      images: [img1, img2, img3, img4],
+      palceCountry: "",
+      placeState: ",",
+      placeCity: "",
+      images: [],
       availableFacilities: [],
       placeOwner: "",
       id: null,
@@ -488,54 +483,54 @@ class VillaProfile extends Component {
     });
   };
 
-  // async componentDidMount() {
-  //   window.scrollTo(0, 0);
-  //   const queryString = window.location.search;
-  //   const urlParams = new URLSearchParams(queryString);
-  //   const id = urlParams.get("id");
-  //   console.log("this is id : " + id);
-  //   this.setState({ id });
-  //   await axios
-  //     .get(API_VILLA_PROFILE_URL, {
-  //       headers: {
-  //         Authorization: "Token ".concat(getItem("user-token")),
-  //       },
-  //       params: {
-  //         villa_id: id,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         console.log(res.data);
-  //         console.log("data is shown successfuly");
-  //         this.loadData(res.data);
-  //       } else {
-  //         console.log("unknown status");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+  async componentDidMount() {
+    window.scrollTo(0, 0);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get("id");
+    console.log("this is id : " + id);
+    this.setState({ id });
+    await axios
+      .get(API_VILLA_PROFILE_URL, {
+        headers: {
+          Authorization: "Token ".concat(getItem("user-token")),
+        },
+        params: {
+          villa_id: id,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+          console.log("data is shown successfuly");
+          this.loadData(res.data);
+        } else {
+          console.log("unknown status");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-  //   await axios
-  //     .get(API_GET_FIXED_RULES, {
-  //       headers: {
-  //         Authorization: "Token ".concat(getItem("user-token")),
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         console.log(res.data);
-  //         console.log("data is shown successfuly");
-  //         this.loadRules(res.data);
-  //       } else {
-  //         console.log("unknown status");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+    await axios
+      .get(API_GET_FIXED_RULES, {
+        headers: {
+          Authorization: "Token ".concat(getItem("user-token")),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+          console.log("data is shown successfuly");
+          this.loadRules(res.data);
+        } else {
+          console.log("unknown status");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   loadRules = (data) => {
     this.setState({
@@ -777,14 +772,20 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={this.state.images[0]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[0]
+                    }
                   />
                 </div>
                 <div className="img2 col">
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={this.state.images[1]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[1]
+                    }
                   />
                 </div>
               </div>
@@ -793,7 +794,10 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={this.state.images[2]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[2]
+                    }
                   />
                   <button onClick={this.showGallary} className="btn btn-light">
                     Show all photos
@@ -803,7 +807,10 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={this.state.images[3]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[3]
+                    }
                   />
                 </div>
               </div>

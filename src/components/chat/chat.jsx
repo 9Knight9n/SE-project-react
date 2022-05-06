@@ -35,7 +35,7 @@ class Chat extends Component {
     // //     console.log("Message received. ", payload);
     // //     // ...
     // // });
-    // this.loadChatList();
+    this.loadChatList();
   }
 
   state = {
@@ -74,8 +74,8 @@ class Chat extends Component {
   };
 
   showDrawer = async () => {
-    // if (!getItem("user-token")) return toast.error("you should login first. ");
-    // await this.loadChatList();
+    if (!getItem("user-token")) return toast.error("you should login first. ");
+    await this.loadChatList();
     this.setState(
       {
         visible: true,
