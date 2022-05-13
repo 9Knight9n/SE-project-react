@@ -24,7 +24,10 @@ class SlideShow extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.show !== this.props.show) {
-      this.setState({ show: this.props.show, images: this.props.images });
+      this.setState({ show: this.props.show });
+    }
+    if (prevProps.images !== this.props.images) {
+      this.setState({ images: this.props.images });
     }
   }
 
@@ -60,7 +63,7 @@ class SlideShow extends Component {
                     <img
                       className="d-block w-100"
                       src={
-                        API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                        // API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
                         this.state.images[0]
                       }
                       alt="First slide"
@@ -71,7 +74,7 @@ class SlideShow extends Component {
                     <img
                       className="d-block w-100"
                       src={
-                        API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                        // API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
                         this.state.images[1]
                       }
                       alt="First slide"
@@ -82,7 +85,7 @@ class SlideShow extends Component {
                     <img
                       className="d-block w-100"
                       src={
-                        API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                        // API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
                         this.state.images[2]
                       }
                       alt="First slide"
@@ -93,7 +96,7 @@ class SlideShow extends Component {
                     <img
                       className="d-block w-100"
                       src={
-                        API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                        // API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
                         this.state.images[3]
                       }
                       alt="Second slide"

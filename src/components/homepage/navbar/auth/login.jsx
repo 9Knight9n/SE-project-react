@@ -109,40 +109,40 @@ class Login extends Component {
     saveCredentials("Abed_eb", "abed_eb@gmail.com", "toekn", null, true);
     showMemoryVariables();
     this.props.onSuccess();
-    return this.exit(false, false, null);
+    // return this.exit(false, false, null);
 
-    // let FormData = require("form-data");
-    // let data = new FormData();
-    // data.append("username", this.state.email);
-    // data.append("password", pass);
-    // await axios
-    //   .post(API_LOGIN_URL, data)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       console.log("success");
-    //       saveCredentials(
-    //         res.data.user_id,
-    //         res.data.email,
-    //         res.data.token,
-    //         res.data.image,
-    //         true
-    //       );
-    //       showMemoryVariables();
-    //       this.props.onSuccess();
-    //       return this.exit(false, false, null);
-    //     } else {
-    //       console.log("unknown status");
-    //       return this.setState({ connectionError: true, loading: false });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     return this.setState({ loading: false, isInvalid: true });
-    //     // return this.setPage(2)
-    //     // console.log("error")
-    //     // console.log(error)
-    //     // return this.setState({connectionError:true,loading:false})
-    //   });
+    let FormData = require("form-data");
+    let data = new FormData();
+    data.append("username", this.state.email);
+    data.append("password", pass);
+    await axios
+      .post(API_LOGIN_URL, data)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("success");
+          saveCredentials(
+            res.data.user_id,
+            res.data.email,
+            res.data.token,
+            res.data.image,
+            true
+          );
+          showMemoryVariables();
+          this.props.onSuccess();
+          return this.exit(false, false, null);
+        } else {
+          console.log("unknown status");
+          return this.setState({ connectionError: true, loading: false });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        return this.setState({ loading: false, isInvalid: true });
+        // return this.setPage(2)
+        // console.log("error")
+        // console.log(error)
+        // return this.setState({connectionError:true,loading:false})
+      });
 
     if (getItem("user-token")) {
       let data = new FormData();
