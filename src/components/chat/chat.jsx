@@ -74,8 +74,8 @@ class Chat extends Component {
   };
 
   showDrawer = async () => {
-    // if (!getItem("user-token")) return toast.error("you should login first. ");
-    // await this.loadChatList();
+    if (!getItem("user-token")) return toast.error("you should login first. ");
+    await this.loadChatList();
     this.setState(
       {
         visible: true,
