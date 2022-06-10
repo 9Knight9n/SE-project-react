@@ -29,7 +29,7 @@ import img4 from "../../assets/img/homepage-bg-4.jpg";
 
 const GeoCodio = require("geocodio-library-node");
 const geocoder = new GeoCodio("c616c01cb1104fe0d88ae0b003a06fb0dfdae80");
-let center = fromLonLat([-90.108862, 29.909324]);
+// let center = fromLonLat([-90.108862, 29.909324]);
 const states = csc.getAllStates();
 let cards0 = [
   {
@@ -136,10 +136,12 @@ class HPSub1 extends Component {
     mapActiveIndex: 0,
     loading: false,
     state: "Louisiana",
+    center: fromLonLat([-90.108862, 29.909324]),
   };
 
   componentDidMount() {
     this.loadCards();
+    console.log("hi");
   }
 
   async loadCards() {
@@ -162,22 +164,21 @@ class HPSub1 extends Component {
         console.log(error);
         return [];
       });
-    // this.setState({cards:cardList})
-    console.log(cards0);
     this.forceUpdate();
   }
 
   renderAMap = (card, id) => {
     let fill = this.state.mapActiveIndex === id;
+    console.log(card);
     if (fill) {
-      // console.log(this.state.center)
-      // if (this.state.center[0] !==card.x && this.state.center[1] !== card.y)
-      // this.state.center = fromLonLat([card.x, card.y])
-      // this.forceUpdate()
+      // console.log(this.state.center);
+      // if (this.state.center[0] !== card.latitude && this.state.center[1] !== card.longitude)
+      //   this.state.center = fromLonLat([card.latitude, card.longitude]);
+      // this.forceUpdate();
 
       return (
         <RFeature
-          geometry={new Point(fromLonLat([0, 0]))}
+          geometry={new Point(fromLonLat([card.latitude, card.longitude]))}
           onClick={(e) =>
             e.map.getView().fit(e.target.getGeometry().getExtent(), {
               duration: 250,
@@ -202,7 +203,7 @@ class HPSub1 extends Component {
   }
 
   renderDMap = (card, id) => {
-    // console.log(card.id+'-map-pin')
+    console.log(card);
     let fill = this.state.mapActiveIndex === id;
     if (fill) return "";
     else
@@ -234,7 +235,8 @@ class HPSub1 extends Component {
   }
 
   mapGoTo(x, y) {
-    center = fromLonLat([x, y]);
+    this.setState({ center: fromLonLat([x, y]) });
+    // center = fromLonLat([x, y]);
     document.getElementById("map-go-to").click();
     // this.setState({})
   }
@@ -326,7 +328,7 @@ class HPSub1 extends Component {
               <RMap
                 width={"100%"}
                 height={"50vh"}
-                initial={{ center: center, zoom: 11 }}
+                initial={{ center: this.state.center, zoom: 11 }}
                 onMoveEnd={this.setCenterOnMove}
                 maxZoom={11}
               >
@@ -337,7 +339,9 @@ class HPSub1 extends Component {
                       <button
                         id={"map-go-to"}
                         className={"display-none"}
-                        onClick={() => map.getView().setCenter(center)}
+                        onClick={() =>
+                          map.getView().setCenter(this.state.center)
+                        }
                       >
                         hidden
                       </button>
@@ -402,7 +406,10 @@ class HPSub1 extends Component {
                       <VillaCard
                         name={card.name}
                         id={card.villa_id}
-                        src={card.default_image_url}
+                        src={
+                          API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                          card.default_image_url
+                        }
                         addr={
                           card.country + ", " + card.state + ", " + card.city
                         }

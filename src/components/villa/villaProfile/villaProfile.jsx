@@ -777,14 +777,20 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={ API_BASE_URL.substring(0, API_BASE_URL.length - 1)+this.state.images[0]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[0]
+                    }
                   />
                 </div>
                 <div className="img2 col">
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={ API_BASE_URL.substring(0, API_BASE_URL.length - 1)+this.state.images[1]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[1]
+                    }
                   />
                 </div>
               </div>
@@ -793,7 +799,10 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={ API_BASE_URL.substring(0, API_BASE_URL.length - 1)+this.state.images[2]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[2]
+                    }
                   />
                   <button onClick={this.showGallary} className="btn btn-light">
                     Show all photos
@@ -803,7 +812,10 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={ API_BASE_URL.substring(0, API_BASE_URL.length - 1)+this.state.images[3]}
+                    src={
+                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                      this.state.images[3]
+                    }
                   />
                 </div>
               </div>
@@ -834,7 +846,7 @@ class VillaProfile extends Component {
                   <button
                     onClick={this.startChat}
                     className="btn btn-primary"
-                    disabled={this.state.isOwner}
+                    disabled={true}
                   >
                     Start chat
                   </button>
@@ -1037,7 +1049,7 @@ class VillaProfile extends Component {
             <div className="col-xl-6 mt-4 villaProfile-reserveButton">
               <Link id="reserve-component" to="/villa/villaProfile/reserve/1/">
                 <button
-                  disabled={this.state.isOwner}
+                  // disabled={this.state.isOwner}
                   className="btn btn-primary"
                 >
                   Reserve

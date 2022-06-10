@@ -214,12 +214,6 @@ class Address extends Component {
     let cityCode = e.target.options[selectedindex].getAttribute("cityCode");
     let citiesOfCountry = csc.getCitiesOfCountry(this.state.countryCode);
     for (let i = 0; i < citiesOfCountry.length; i++) {
-      console.log(
-        "citycode : " +
-          e.target.value +
-          " cities of country : " +
-          citiesOfCountry[i].name
-      );
       if (e.target.value === citiesOfCountry[i].name) {
         sessionStorage.setItem("place-latitude", citiesOfCountry[i].latitude);
         sessionStorage.setItem("place-longitude", citiesOfCountry[i].longitude);
