@@ -7,9 +7,9 @@ class ChatCard extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log("id : chat-item-" + this.props.chat_id);
-  }
+  // componentDidMount() {
+  //   console.log("id : chat-item-" + this.props.chat_id);
+  // }
 
   render() {
     return (

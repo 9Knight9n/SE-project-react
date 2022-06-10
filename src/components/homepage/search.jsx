@@ -161,13 +161,13 @@ class Search extends Component {
   };
 
   onStartDateChange = (date, date2) => {
-    console.log(date, "+", date2);
+    // console.log(date, "+", date2);
     this.setState({ startDate: date2 === "" ? null : date2 });
     this.forceUpdate();
   };
 
   onEndDateChange = (date, date2) => {
-    console.log(date, "+", date2);
+    // console.log(date, "+", date2);
     this.setState({ endDate: date2 === "" ? null : date2 });
   };
 
@@ -369,7 +369,10 @@ class Search extends Component {
               getContainer={false}
               style={{ position: "absolute", overflow: "hidden" }}
             >
-              <h4 className={'pt-3 pl-3'} style={{ fontFamily: "cursive", width: "fit-content" }}>
+              <h4
+                className={"pt-3 pl-3"}
+                style={{ fontFamily: "cursive", width: "fit-content" }}
+              >
                 Almost there!
               </h4>
               {drawerContent}

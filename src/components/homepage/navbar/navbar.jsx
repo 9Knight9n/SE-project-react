@@ -34,7 +34,7 @@ class Nav_bar extends Component {
 
   componentWillMount() {}
   componentDidMount() {
-    console.log(this.state.size);
+    // console.log(this.state.size);
     document.addEventListener(STORAGE_KEY + "screen-size-changed", (event) =>
       this.setState({ size: event.detail })
     );

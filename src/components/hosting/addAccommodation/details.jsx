@@ -80,7 +80,7 @@ class Details extends Component {
       sessionStorage.setItem("add-villa-description", description);
       sessionStorage.setItem("add-villa-area", area);
       sessionStorage.setItem("add-villa-price", price);
-      console.log("set");
+      // console.log("set");
       document.getElementById("goToRules").click();
     } else {
       toast.error("You may entered invalid amounts!");

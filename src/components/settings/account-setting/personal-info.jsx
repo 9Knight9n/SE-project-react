@@ -63,7 +63,7 @@ class PersonalInfo extends Component {
   }
 
   async componentDidMount() {
-    console.log("this is avatar url : ", getItem("profileAvatar"));
+    // console.log("this is avatar url : ", getItem("profileAvatar"));
 
     this.setState({
       avatarSrc:
@@ -73,7 +73,7 @@ class PersonalInfo extends Component {
     });
     await this.loadDataInit();
     // await this.loadAvatarInit()
-    console.log("Token ".concat(getItem("user-token")));
+    // console.log("Token ".concat(getItem("user-token")));
   }
 
   async loadDataInit() {

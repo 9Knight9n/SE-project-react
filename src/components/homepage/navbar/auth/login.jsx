@@ -119,7 +119,7 @@ class Login extends Component {
       .post(API_LOGIN_URL, data)
       .then((res) => {
         if (res.status === 200) {
-          console.log("success");
+          // console.log("success");
           saveCredentials(
             res.data.user_id,
             res.data.email,

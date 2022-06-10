@@ -14,8 +14,10 @@ import {
 } from "../../../util";
 import {
   API_EMAIL_CHECK_URL,
-  API_EMAIL_VERIFY_URL, API_REGISTER_FIREBASE_TOKEN,
-  API_SIGNUP_URL, STORAGE_KEY,
+  API_EMAIL_VERIFY_URL,
+  API_REGISTER_FIREBASE_TOKEN,
+  API_SIGNUP_URL,
+  STORAGE_KEY,
   VERIFY_LENGTH,
 } from "../../../constants";
 import axios from "axios";
@@ -56,7 +58,7 @@ class Signup extends Component {
 
   componentDidMount() {
     if (this.props.email) {
-      console.log(this.props.email);
+      // console.log(this.props.email);
       document.getElementById("email-input").value = this.props.email;
       this.emailValidation();
     }
@@ -730,27 +732,29 @@ class Signup extends Component {
         // console.log(error)
         // return this.setState({connectionError:true,loading:false})
       });
-    if(getItem('user-token'))
-    {
+    if (getItem("user-token")) {
       let data = new FormData();
-      data.append('token', sessionStorage.getItem(STORAGE_KEY+'firebase-token'));
+      data.append(
+        "token",
+        sessionStorage.getItem(STORAGE_KEY + "firebase-token")
+      );
 
       var config = {
-        method: 'post',
+        method: "post",
         url: API_REGISTER_FIREBASE_TOKEN,
         headers: {
           Authorization: "Token ".concat(getItem("user-token")),
         },
-        data : data
+        data: data,
       };
 
       axios(config)
-          .then(function (response) {
-            console.log(JSON.stringify(response.data));
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 

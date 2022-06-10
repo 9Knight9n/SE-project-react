@@ -17,15 +17,13 @@ const messaging = firebase.messaging();
 
 messaging.requestPermission()
     .then(()=>{
-        console.log("push notification permission accepted.")
+\
         return messaging.getToken({vapidKey:WEB_PUSH_CERTIFICATE})
     }).then((token)=>{
     // write code to send to server
     sessionStorage.setItem(STORAGE_KEY+'firebase-token',token)
-    console.log(token)
 }).catch(()=> {
-    console.log("push notification permission denied.")
-})
+\})
 
 
 export const getMessaging = () => {

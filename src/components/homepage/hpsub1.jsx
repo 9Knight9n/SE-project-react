@@ -141,7 +141,6 @@ class HPSub1 extends Component {
 
   componentDidMount() {
     this.loadCards();
-    console.log("hi");
   }
 
   async loadCards() {
@@ -157,7 +156,7 @@ class HPSub1 extends Component {
     cards0 = await axios(config)
       .then(function (response) {
         // console.log(JSON.stringify(response.data));
-        console.log(response.data.data);
+        // console.log(response.data.data);
         return response.data.data;
       })
       .catch(function (error) {
@@ -169,7 +168,7 @@ class HPSub1 extends Component {
 
   renderAMap = (card, id) => {
     let fill = this.state.mapActiveIndex === id;
-    console.log(card);
+    // console.log(card);
     if (fill) {
       // console.log(this.state.center);
       // if (this.state.center[0] !== card.latitude && this.state.center[1] !== card.longitude)
@@ -203,7 +202,7 @@ class HPSub1 extends Component {
   }
 
   renderDMap = (card, id) => {
-    console.log(card);
+    // console.log(card);
     let fill = this.state.mapActiveIndex === id;
     if (fill) return "";
     else
@@ -243,7 +242,7 @@ class HPSub1 extends Component {
 
   async setCenterOnMove(e, conf) {
     let newCenter = toLonLat(e.map.getView().getCenter());
-    console.log(newCenter);
+    newCenter;
 
     var config = {
       method: "get",
@@ -257,7 +256,7 @@ class HPSub1 extends Component {
     };
     let code = await axios(config)
       .then(function (response) {
-        console.log(response.data.results[0].address_components);
+        // console.log(response.data.results[0].address_components);
         if (
           response.data.results &&
           response.data.results[0] &&
@@ -301,10 +300,10 @@ class HPSub1 extends Component {
   handleStateSelect(value) {
     for (let k = 0; k < states.length; k++) {
       if (value.toString().startsWith(states[k].name)) {
-        console.log("========>", states[k].name);
+        // console.log("========>", states[k].name);
         this.setState({ state: states[k].name }, this.loadCards);
         this.mapGoTo(states[k].longitude, states[k].latitude);
-        console.log(states[k].longitude, states[k].latitude);
+        // console.log(states[k].longitude, states[k].latitude);
         // center = fromLonLat(,states[k].longitude)
         break;
       }

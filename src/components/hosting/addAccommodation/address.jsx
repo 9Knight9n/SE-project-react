@@ -60,11 +60,11 @@ class Address extends Component {
       document.getElementById("address-postalCode").value =
         sessionStorage.getItem("add-villa-postalCode");
 
-      console.log(sessionStorage.getItem("add-villa-selected-country"));
-      console.log(sessionStorage.getItem("add-villa-selected-state"));
-      console.log(sessionStorage.getItem("add-villa-selected-city"));
-      console.log(sessionStorage.getItem("add-villa-postalCode"));
-      console.log(sessionStorage.getItem("add-villa-fullAddress"));
+      // console.log(sessionStorage.getItem("add-villa-selected-country"));
+      // console.log(sessionStorage.getItem("add-villa-selected-state"));
+      // console.log(sessionStorage.getItem("add-villa-selected-city"));
+      // console.log(sessionStorage.getItem("add-villa-postalCode"));
+      // console.log(sessionStorage.getItem("add-villa-fullAddress"));
     }
   }
 
@@ -167,7 +167,7 @@ class Address extends Component {
     let countryCode =
       e.target.options[selectedindex].getAttribute("countryCode");
     if (csc.getStatesOfCountry(countryCode).length === 0) {
-      console.log(csc.getCitiesOfCountry(countryCode));
+      // console.log(csc.getCitiesOfCountry(countryCode));
       this.setState({
         country: e.target.value,
         countryCode: countryCode,
@@ -217,12 +217,6 @@ class Address extends Component {
       if (e.target.value === citiesOfCountry[i].name) {
         sessionStorage.setItem("place-latitude", citiesOfCountry[i].latitude);
         sessionStorage.setItem("place-longitude", citiesOfCountry[i].longitude);
-        console.log(
-          "location :    " +
-            sessionStorage.getItem("place-latitude") +
-            " " +
-            sessionStorage.getItem("place-longitude")
-        );
       }
     }
     this.setState({

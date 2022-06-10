@@ -54,7 +54,7 @@ class Categories extends Component {
           "add-villa-selected-category-name",
           this.state.categories[k].label
         );
-        console.log(sessionStorage.getItem("add-villa-selected-category-name"));
+        // console.log(sessionStorage.getItem("add-villa-selected-category-name"));
         break;
       }
     }

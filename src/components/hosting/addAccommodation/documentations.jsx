@@ -41,7 +41,7 @@ class Documentations extends Component {
   getPhotoList = (input) => {
     let array = [];
     let temp = JSON.parse(sessionStorage.getItem(input));
-    console.log(sessionStorage.getItem(input));
+    // console.log(sessionStorage.getItem(input));
     for (let k = 0; k < temp.length; k++) {
       if (input === "add-villa-uploaded-doc-residence")
         array = [...array, temp[k].response.document_id];
@@ -53,7 +53,7 @@ class Documentations extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     this.SaveFileListToSessionStorage();
-    console.log("this is rules : " + sessionStorage.getItem("selected-rules"));
+    // console.log("this is rules : " + sessionStorage.getItem("selected-rules"));
     let data = JSON.stringify({
       name: sessionStorage.getItem("add-villa-placeName"),
       type: sessionStorage.getItem("add-villa-selected-category-name"),
@@ -100,7 +100,7 @@ class Documentations extends Component {
       doc_id_list: this.getPhotoList("add-villa-uploaded-doc-residence"),
     });
 
-    console.log("data sent:", data);
+    // console.log("data sent:", data);
 
     let res = await axios
       .post(API_ADD_VILLA_URL, data, {
@@ -111,7 +111,7 @@ class Documentations extends Component {
       })
       .then((res) => {
         if (res.status === 201) {
-          console.log("added");
+          // console.log("added");
           toast.success("Your villa added");
           document.getElementById("go-to-hosting-page-from-add-villa").click();
           return true;
@@ -162,7 +162,7 @@ class Documentations extends Component {
       headers: { Authorization: "Token ".concat(getItem("user-token")) },
     };
 
-    console.log(config);
+    // console.log(config);
 
     let response = await axios(config)
       .then(function (response) {
@@ -203,8 +203,11 @@ class Documentations extends Component {
       "add-villa-uploaded-doc-residence",
       JSON.stringify(this.state.fileList2)
     );
-    console.log(sessionStorage.getItem("add-villa-uploaded-doc-residence"));
-    sessionStorage.setItem('add-villa-uploaded-doc-person', JSON.stringify(this.state.fileList1));
+    // console.log(sessionStorage.getItem("add-villa-uploaded-doc-residence"));
+    sessionStorage.setItem(
+      "add-villa-uploaded-doc-person",
+      JSON.stringify(this.state.fileList1)
+    );
   };
 
   // loadFileList=()=>{

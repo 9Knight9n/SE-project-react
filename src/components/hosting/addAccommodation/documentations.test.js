@@ -19,7 +19,7 @@ import Documentations from "./documentations";
 
 const server = setupServer(
   rest.post(API_BASE_URL + API_UPLOAD_DOC_RESIDANCE_URL, (req, res, ctx) => {
-    console.log("=========================================================");
+    // console.log("=========================================================");
     // console.log(req)
     return res(ctx.status(400));
   })
@@ -381,9 +381,6 @@ describe("documentations page test", () => {
 
     server.use(
       rest.post(API_BASE_URL + API_UPLOAD_DOC_URL, (req, res, ctx) => {
-        console.log(
-          "========================================================="
-        );
         // console.log(req)
         return res(ctx.status(400));
       })
@@ -451,9 +448,6 @@ describe("documentations page test", () => {
 
     server.use(
       rest.post(API_BASE_URL + API_UPLOAD_DOC_URL, (req, res, ctx) => {
-        console.log(
-          "========================================================="
-        );
         // console.log(req)
         return res(ctx.status(400));
       })
@@ -489,10 +483,6 @@ describe("documentations page test", () => {
 
     server.use(
       rest.post(API_BASE_URL + API_UPLOAD_DOC_URL, (req, res, ctx) => {
-        console.log(
-          "========================================================="
-        );
-        // console.log(req)
         return res(ctx.status(400));
       })
     );

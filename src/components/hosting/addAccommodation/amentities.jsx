@@ -40,7 +40,7 @@ class Amentities extends Component {
         showers: JSON.parse(sessionStorage.getItem("add-villa-amentities"))
           .showers,
       });
-      console.log(JSON.parse(sessionStorage.getItem("add-villa-amentities")));
+      // console.log(JSON.parse(sessionStorage.getItem("add-villa-amentities")));
     }
   }
 
