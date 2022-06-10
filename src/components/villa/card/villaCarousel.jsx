@@ -27,46 +27,46 @@ class VillaCarousel extends Component {
 
   state = {
     cards: [
-      {
-        id: 0,
-        name: "Luxury villa",
-        country: "Iran",
-        state: "Tehran",
-        city: "Tehran",
-        default_image_url: img1,
-        rate__avg: 1,
-        price_per_night: 12,
-      },
-      {
-        id: 1,
-        name: "Luxury villa",
-        country: "Iran",
-        state: "Tehran",
-        city: "Tehran",
-        default_image_url: img2,
-        rate__avg: 1,
-        price_per_night: 12,
-      },
-      {
-        id: 2,
-        name: "Luxury villa",
-        country: "Iran",
-        state: "Tehran",
-        city: "Tehran",
-        default_image_url: img3,
-        rate__avg: 1,
-        price_per_night: 12,
-      },
-      {
-        id: 3,
-        name: "Luxury villa",
-        country: "Iran",
-        state: "Tehran",
-        city: "Tehran",
-        default_image_url: img4,
-        rate__avg: 1,
-        price_per_night: 12,
-      },
+      // {
+      //   id: 0,
+      //   name: "Luxury villa",
+      //   country: "Iran",
+      //   state: "Tehran",
+      //   city: "Tehran",
+      //   default_image_url: img1,
+      //   rate__avg: 1,
+      //   price_per_night: 12,
+      // },
+      // {
+      //   id: 1,
+      //   name: "Luxury villa",
+      //   country: "Iran",
+      //   state: "Tehran",
+      //   city: "Tehran",
+      //   default_image_url: img2,
+      //   rate__avg: 1,
+      //   price_per_night: 12,
+      // },
+      // {
+      //   id: 2,
+      //   name: "Luxury villa",
+      //   country: "Iran",
+      //   state: "Tehran",
+      //   city: "Tehran",
+      //   default_image_url: img3,
+      //   rate__avg: 1,
+      //   price_per_night: 12,
+      // },
+      // {
+      //   id: 3,
+      //   name: "Luxury villa",
+      //   country: "Iran",
+      //   state: "Tehran",
+      //   city: "Tehran",
+      //   default_image_url: img4,
+      //   rate__avg: 1,
+      //   price_per_night: 12,
+      // },
     ],
     empty: true,
     // cardSize:2,
@@ -82,35 +82,35 @@ class VillaCarousel extends Component {
     }
   }
 
-  // async componentDidMount() {
-  //   await this.loadCardList(this.props.url);
-  // }
+  async componentDidMount() {
+    await this.loadCardList(this.props.url);
+  }
 
-  // async loadCardList(url) {
-  //   let config = {
-  //     method: "get",
-  //     url: url
-  //       .toString()
-  //       .concat(this.props.addNum ? "?number_of_villa=100" : ""),
-  //     headers: {
-  //       Authorization: "Token " + getItem("user-token"),
-  //     },
-  //   };
-  //   let response = await axios(config)
-  //     .then(function (response) {
-  //       // console.log(JSON.stringify(response.data));
-  //       return response.data.data;
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //       return [];
-  //     });
-  //   console.log("============", url, response);
-  //   // if (response.length>0)
-  //   this.setState({ cards: response });
-  //   // else
-  //   //     this.setState({cards:[]})
-  // }
+  async loadCardList(url) {
+    let config = {
+      method: "get",
+      url: url
+        .toString()
+        .concat(this.props.addNum ? "?number_of_villa=100" : ""),
+      headers: {
+        Authorization: "Token " + getItem("user-token"),
+      },
+    };
+    let response = await axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        return response.data.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+        return [];
+      });
+    console.log("============", url, response);
+    // if (response.length>0)
+    this.setState({ cards: response });
+    // else
+    //     this.setState({cards:[]})
+  }
 
   hidePlace = async (id, status) => {
     await axios
@@ -155,7 +155,7 @@ class VillaCarousel extends Component {
             <VillaCard
               name={card.name}
               id={card.villa_id}
-              src={card.default_image_url}
+              src={ API_BASE_URL.substring(0, API_BASE_URL.length - 1)+(card.default_image_url?card.default_image_url:card.images[0])}
               addr={card.country + ", " + card.state + ", " + card.city}
               cost={card.price_per_night}
               rate={card.rate__avg ? card.rate__avg : card.rate}

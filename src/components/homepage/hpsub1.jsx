@@ -138,34 +138,34 @@ class HPSub1 extends Component {
     state: "Louisiana",
   };
 
-  // componentDidMount() {
-  //   this.loadCards();
-  // }
+  componentDidMount() {
+    this.loadCards();
+  }
 
-  // async loadCards() {
-  //   let param = "?page=1&number_of_villa=1000&state=" + this.state.state;
-  //   let config = {
-  //     method: "get",
-  //     url: API_SEARCH_VILLA + param,
-  //     headers: {
-  //       // 'Authorization': 'Token '.concat(getItem('user-token')),
-  //     },
-  //   };
-  //   console.log(config);
-  //   cards0 = await axios(config)
-  //     .then(function (response) {
-  //       // console.log(JSON.stringify(response.data));
-  //       console.log(response.data.data);
-  //       return response.data.data;
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //       return [];
-  //     });
-  //   // this.setState({cards:cardList})
-  //   console.log(cards0);
-  //   this.forceUpdate();
-  // }
+  async loadCards() {
+    let param = "?page=1&number_of_villa=1000&state=" + this.state.state;
+    let config = {
+      method: "get",
+      url: API_SEARCH_VILLA + param,
+      headers: {
+        // 'Authorization': 'Token '.concat(getItem('user-token')),
+      },
+    };
+    console.log(config);
+    cards0 = await axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        console.log(response.data.data);
+        return response.data.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+        return [];
+      });
+    // this.setState({cards:cardList})
+    console.log(cards0);
+    this.forceUpdate();
+  }
 
   renderAMap = (card, id) => {
     let fill = this.state.mapActiveIndex === id;
