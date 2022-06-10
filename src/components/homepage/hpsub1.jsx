@@ -152,7 +152,7 @@ class HPSub1 extends Component {
         // 'Authorization': 'Token '.concat(getItem('user-token')),
       },
     };
-    console.log(config);
+
     cards0 = await axios(config)
       .then(function (response) {
         // console.log(JSON.stringify(response.data));
@@ -242,7 +242,7 @@ class HPSub1 extends Component {
 
   async setCenterOnMove(e, conf) {
     let newCenter = toLonLat(e.map.getView().getCenter());
-    newCenter;
+    // newCenter;
 
     var config = {
       method: "get",

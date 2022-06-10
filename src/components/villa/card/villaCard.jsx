@@ -15,10 +15,6 @@ class VillaCard extends Component {
     loading: false,
   };
 
-  componentDidMount() {
-    console.log("src", this.props.src);
-  }
-
   showOnMap(e) {
     e.stopPropagation();
     this.props.mapGoTo(this.props.lan, this.props.lon, this.props.index);
@@ -26,7 +22,8 @@ class VillaCard extends Component {
 
   render() {
     return (
-      <div className={'m-1'}
+      <div
+        className={"m-1"}
         onClick={() =>
           document
             .getElementById("go-to-villa-id-".concat(this.props.id))
@@ -43,9 +40,21 @@ class VillaCard extends Component {
           style={{ width: 320, height: "100%" }}
           cover={
             <div>
-              <div className={'d-flex flex-row pr-2 pl-2 rounded'}
-                   style={{ width: "fit-content", height: "fit-content",position:'absolute',backgroundColor:'white',right:0,bottom:0 }}>
-                <Rate disabled defaultValue={1} count={1} /> <div className={'ml-2 mt-2'}>{this.props.rate?this.props.rate:"Not rated"}{" "}</div>
+              <div
+                className={"d-flex flex-row pr-2 pl-2 rounded"}
+                style={{
+                  width: "fit-content",
+                  height: "fit-content",
+                  position: "absolute",
+                  backgroundColor: "white",
+                  right: 0,
+                  bottom: 0,
+                }}
+              >
+                <Rate disabled defaultValue={1} count={1} />{" "}
+                <div className={"ml-2 mt-2"}>
+                  {this.props.rate ? this.props.rate : "Not rated"}{" "}
+                </div>
               </div>
               <img
                 style={{ width: "320px", height: "200px", objectFit: "cover" }}
