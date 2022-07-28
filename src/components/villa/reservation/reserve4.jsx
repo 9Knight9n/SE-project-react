@@ -7,8 +7,8 @@ import { DatePicker, Space } from "antd";
 import { STORAGE_KEY } from "../../constants";
 import { ToastContainer, toast } from "react-toastify";
 import { fromLonLat } from "ol/proj";
-import {RFeature, RLayerVector, RMap, ROSM, ROverlay, RStyle} from "rlayers";
-import {Point} from "ol/geom";
+import { RFeature, RLayerVector, RMap, ROSM, ROverlay, RStyle } from "rlayers";
+import { Point } from "ol/geom";
 import locationIcon from "../../../assets/location.png";
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -30,7 +30,6 @@ class Reserve2 extends Component {
     document.addEventListener(STORAGE_KEY + "screen-size-changed", (event) =>
       this.setState({ size: event.detail })
     );
-    console.log("addr : " + this.props.place_address);
     // let config = {
     //     method: 'get',
     //     url: API_CHECK_DOC_URL,
@@ -113,17 +112,16 @@ class Reserve2 extends Component {
                       <RStyle.RIcon src={locationIcon} anchor={[0.5, 0.8]} />
                     </RStyle.RStyle>
                     <RFeature
-                        geometry={new Point(this.props.mapInitial.center)}
-                        onClick={(e) =>
-                            e.map
-                                .getView()
-                                .fit(e.target.getGeometry().getExtent(), {
-                                  duration: 250,
-                                  zoom: 11,
-                                })
-                        }
-                    >
-                    </RFeature>
+                      geometry={new Point(this.props.mapInitial.center)}
+                      onClick={(e) =>
+                        e.map
+                          .getView()
+                          .fit(e.target.getGeometry().getExtent(), {
+                            duration: 250,
+                            zoom: 11,
+                          })
+                      }
+                    ></RFeature>
                   </RLayerVector>
                   <ROSM />
                 </RMap>

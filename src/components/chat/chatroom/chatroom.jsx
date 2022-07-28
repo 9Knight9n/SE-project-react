@@ -99,7 +99,6 @@ class Chatroom extends Component {
   };
 
   newMessage = async (obj) => {
-    console.log(obj);
     if (obj.message === "delete message successfully") {
       let temp = this.state.chats.filter(function (item) {
         return item.message_id !== obj.data.message_id;
@@ -115,7 +114,6 @@ class Chatroom extends Component {
           offset: 50,
         })
       );
-      console.log(obj.data);
     } else if (obj.message === "update message successfully") {
       for (let k = 0; k < this.state.chats.length; k++) {
         if (this.state.chats[k].message_id === obj.data.message_id) {
@@ -248,12 +246,6 @@ class Chatroom extends Component {
   };
 
   onReplyMessageClick = (e, id) => {
-    console.log(
-      "ran :",
-      id,
-      " to ",
-      this.state.chats.find((chat) => chat.message_id === id).parent_message
-    );
     e.stopPropagation();
     // console.log(this.state.chats.find(chat => chat.message_id === id))
     scroller.scrollTo(
@@ -279,17 +271,13 @@ class Chatroom extends Component {
   };
 
   onChange = (info) => {
-    console.log(info);
     this.setState({
       uploading: info.file.status === "uploading",
       file: info.file,
     });
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
+
     if (info.file.status === "done") {
       toast.success(`${info.file.name} file uploaded successfully`);
-      console.log("Pay attention!!!!!!!!!!!!!!!!! : ", info);
       this.sendFile(info.file.response.data.message_id);
     } else if (info.file.status === "error") {
       toast.error(`${info.file.name} file upload failed.`);

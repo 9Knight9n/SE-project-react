@@ -36,7 +36,6 @@ class Reserve1 extends Component {
   }
 
   componentDidMount = async () => {
-    console.log(this.props.PlacePrice);
     if (sessionStorage.getItem("travel-startDate")) {
       this.setState({
         passangers: sessionStorage.getItem("passangers"),
@@ -57,7 +56,6 @@ class Reserve1 extends Component {
       currentDate: date.format(now, "YYYY/MM/DD"),
     });
 
-    console.log("villa_id : ", this.props.place_id);
     await axios
       .get(API_GET_RESERVED_DATES, {
         headers: {
@@ -69,8 +67,6 @@ class Reserve1 extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
-          console.log("data is shown successfuly");
           this.loadCalendar(res.data);
         } else {
           console.log("unknown status");
@@ -85,7 +81,6 @@ class Reserve1 extends Component {
   };
 
   loadCalendar = (data) => {
-    console.log("this is sadegh data : ", data.dates);
     this.setState({
       disabledDates: data.dates,
     });
@@ -133,8 +128,6 @@ class Reserve1 extends Component {
         range: [moment(range[0].format()), moment(range[1].format())],
       });
       this.calculateCost(b.diff(a, "days"));
-      console.log("start date  ", startDate.slice(0, -15));
-      console.log("end date  ", endDate.slice(0, -15));
     }
     if (range === null) {
       this.setState({ invalidDate: true, disableBtn: true });
@@ -192,7 +185,6 @@ class Reserve1 extends Component {
 
   calculateCost = (stayingDays) => {
     let total = stayingDays * this.state.price;
-    console.log("total : " + total);
     this.setState({ total: total });
   };
 

@@ -85,8 +85,6 @@ class PersonalInfo extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
-          console.log("data is shown");
           this.loadData(res.data);
         } else {
           console.log("unknown status");
@@ -107,8 +105,6 @@ class PersonalInfo extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
-          console.log("data is shown");
           this.loadAvatar(res.data);
         } else {
           console.log("unknown status");
@@ -126,7 +122,6 @@ class PersonalInfo extends Component {
         "profileAvatar",
         API_BASE_URL.substring(0, API_BASE_URL.length - 1) + data.base64_url
       );
-      console.log("url: ", localStorage.getItem("profileAvatar"));
     } else this.setState({ avatarSrc: default_logo });
   };
 
@@ -158,7 +153,6 @@ class PersonalInfo extends Component {
     let bio = document.getElementById("ptextArea").value;
     let gender = document.getElementById("personalInfo-Gender").value;
     let dataIsValid = true;
-    console.log("dat of birth: ".concat(dateOfBirth));
     if (!isValidPhoneNumber(phonenumber)) {
       dataIsValid = false;
       this.setState({
@@ -195,7 +189,6 @@ class PersonalInfo extends Component {
     }
 
     if (!(nationalId.length >= 10)) {
-      console.log("wrong enter");
       if (nationalId.length !== 0) {
         dataIsValid = false;
         this.setState({ invalidNationalId: true });
@@ -230,7 +223,6 @@ class PersonalInfo extends Component {
         })
         .then((res) => {
           if (res.status === 205) {
-            console.log("edit was ok");
             // showMemoryVariables()
           } else {
             console.log("unknown status");

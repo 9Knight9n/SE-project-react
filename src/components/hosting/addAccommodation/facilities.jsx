@@ -425,7 +425,6 @@ class Facilities extends Component {
           ...selected_facilities,
           this.state.facilities[k].label,
         ];
-        console.log(selected_facilities);
       }
     }
     sessionStorage.setItem(

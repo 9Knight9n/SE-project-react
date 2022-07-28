@@ -59,7 +59,6 @@ class Reserve2 extends Component {
   }
 
   handleChange = (e) => {
-    console.log("hi");
     if (e.target.name === "nationalCode" && e.target.value.length === 10) {
       this.setState({
         nationalCode: e.target.value,

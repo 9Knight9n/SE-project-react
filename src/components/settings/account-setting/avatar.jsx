@@ -26,11 +26,6 @@ class Avatar extends Component {
       this.setState({ src: this.props.src });
     }
   }
-
-  componentDidMount() {
-    console.log("this is src : " + this.props.src);
-  }
-
   editAvatar = () => {};
 
   exit = () => {
@@ -60,7 +55,6 @@ class Avatar extends Component {
   }
 
   async onSave() {
-    console.log("saved");
     this.setState({ disableDoneBtn: false, nothingChanged: false });
     let src = this.state.preview;
     this.props.saveAvatar(src);

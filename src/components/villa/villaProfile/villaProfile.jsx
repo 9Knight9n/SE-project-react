@@ -493,7 +493,6 @@ class VillaProfile extends Component {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");
-    console.log("this is id : " + id);
     this.setState({ id });
     await axios
       .get(API_VILLA_PROFILE_URL, {
@@ -506,8 +505,6 @@ class VillaProfile extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
-          console.log("data is shown successfuly");
           this.loadData(res.data);
         } else {
           console.log("unknown status");
@@ -525,8 +522,6 @@ class VillaProfile extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
-          console.log("data is shown successfuly");
           this.loadRules(res.data);
         } else {
           console.log("unknown status");
@@ -541,11 +536,9 @@ class VillaProfile extends Component {
     this.setState({
       fixed_rules: data,
     });
-    console.log("rules : ", data);
   };
 
   loadData = (data) => {
-    console.log("price = : " + data.price_per_night);
     this.setState({
       placeName: data.name,
       placeDescription: data.description,
@@ -592,7 +585,6 @@ class VillaProfile extends Component {
   };
 
   mapGoTo(x, y) {
-    console.log("lat : " + x + " long : " + y);
     center = fromLonLat([x, y]);
     document.getElementById("map-go-to-villaProfile").click();
   }
@@ -602,7 +594,6 @@ class VillaProfile extends Component {
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");
     if (action === "add") {
-      console.log("add");
       this.setState({ isFavorite: !this.state.isFavorite });
       let FormData = require("form-data");
       let data = new FormData();
@@ -617,10 +608,8 @@ class VillaProfile extends Component {
         })
         .then((res) => {
           if (res.status === 200) {
-            console.log("added to favorite");
             toast.success("Villa added to your favorites");
           } else {
-            console.log("unknown status");
             toast.info("A problem happened");
           }
         })
@@ -641,10 +630,8 @@ class VillaProfile extends Component {
         })
         .then((res) => {
           if (res.status === 200) {
-            console.log("removed from favorite");
             toast.info("Villa removed from your favorites");
           } else {
-            console.log("unknown status");
             toast.info("A problem happened");
           }
         })
@@ -669,7 +656,6 @@ class VillaProfile extends Component {
 
     let chat = await axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         return response.data.data;
       })
       .catch(function (error) {
@@ -679,9 +665,6 @@ class VillaProfile extends Component {
     if (chat) {
       sessionStorage.setItem("goToChat", "chat-item-" + chat.chat_id);
       document.getElementById("open-chat-button").click();
-      // console.log('chat-item-' + chat.chat_id)
-
-      // document.getElementById('chat-item-' + chat.chat_id).click()
     }
   }
 
@@ -689,7 +672,6 @@ class VillaProfile extends Component {
     if (action === "reserve") {
       document.getElementById("reserve-component").click();
     } else if (action === "cancel") {
-      console.log("canceled");
       this.setState({ isReserved: !this.state.isReserved });
     }
   };

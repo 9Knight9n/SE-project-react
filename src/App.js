@@ -59,9 +59,7 @@ class App extends Component {
       };
 
       axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-        })
+        .then(function (response) {})
         .catch(function (error) {
           console.log(error);
         });

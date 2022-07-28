@@ -281,7 +281,6 @@ class Documentations extends Component {
                     data-testid={"doc-upload-button-add-villa"}
                     // customRequest={(obj)=>this.rename(obj)}
                     // onSuccess={()=>console.log(this.state.fileList)}
-                    onRemove={() => console.log(this.state.fileList)}
                     onPreview={this.handlePreview}
                     onChange={this.handleChange1}
                   >
@@ -320,7 +319,6 @@ class Documentations extends Component {
                   data-testid={"residence-doc-upload-button-add-villa"}
                   // customRequest={(obj)=>this.rename(obj)}
                   // onSuccess={()=>console.log(this.state.fileList)}
-                  onRemove={() => console.log(this.state.fileList)}
                   onPreview={this.handlePreview}
                   onChange={this.handleChange2}
                 >

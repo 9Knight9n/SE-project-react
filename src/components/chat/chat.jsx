@@ -58,7 +58,6 @@ class Chat extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log("chat responde : ", res.data.data);
           return res.data.data;
           // this.loadData(res.data)
         } else {

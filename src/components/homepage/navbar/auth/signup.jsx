@@ -626,7 +626,6 @@ class Signup extends Component {
       .post(API_EMAIL_VERIFY_URL, data)
       .then((res) => {
         if (res.status === 200) {
-          console.log("success");
           return this.setState({ vc_code: res.data.vc_code, loading: false });
         } else {
           console.log("unknown status");
@@ -749,9 +748,7 @@ class Signup extends Component {
       };
 
       axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-        })
+        .then(function (response) {})
         .catch(function (error) {
           console.log(error);
         });

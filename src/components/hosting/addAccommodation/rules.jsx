@@ -26,8 +26,6 @@ class rules extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
-          console.log("data is shown successfuly");
           this.loadRules(res.data);
         } else {
           console.log("unknown status");
@@ -47,7 +45,6 @@ class rules extends Component {
   };
 
   loadRules = (data) => {
-    console.log("data rules : ", data);
     this.setState({
       rules: data,
     });
@@ -61,28 +58,18 @@ class rules extends Component {
 
   handleChange = (e) => {
     let checked = this.state.checkedRules;
-    console.log("checked rules : " + this.state.checkedRules);
-    console.log("is checked? : " + e.target.checked);
     if (!e.target.checked) {
-      console.log("enter if");
       let index = checked.indexOf(parseInt(e.target.id));
       checked = [
         ...checked.slice(0, index),
         ...checked.slice(index + 1, checked.length),
       ];
     } else {
-      console.log("enter else : " + e.target.id);
       checked = [...checked, parseInt(e.target.id)];
     }
-
-    console.log("checked rules : " + checked);
-
     this.setState({
       checkedRules: checked,
     });
-    // this.setState({
-    //     selectedRules: this.state.selectedRules.concat([e.target.id, !this.state.ruleState])
-    // })
   };
   render() {
     return (

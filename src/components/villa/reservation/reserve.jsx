@@ -26,7 +26,6 @@ class Reserve extends Component {
     document.addEventListener(STORAGE_KEY + "screen-size-changed", (event) =>
       this.setState({ size: event.detail })
     );
-    console.log("addr : " + this.props.place_address);
   };
 
   exit() {

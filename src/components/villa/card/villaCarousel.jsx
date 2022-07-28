@@ -105,7 +105,6 @@ class VillaCarousel extends Component {
         console.log(error);
         return [];
       });
-    console.log("============", url, response);
     // if (response.length>0)
     this.setState({ cards: response });
     // else
@@ -144,7 +143,7 @@ class VillaCarousel extends Component {
 
   renderList() {
     let arr = [];
-    for (let k = 0; k <= this.state.cards.length; k++) {
+    for (let k = 0; k <= this.state.cards?.length; k++) {
       let cardGroups = [];
       for (let z = 0; z < cardSize; z++) {
         let card = this.state.cards[k * cardSize + z];
@@ -155,7 +154,12 @@ class VillaCarousel extends Component {
             <VillaCard
               name={card.name}
               id={card.villa_id}
-              src={ API_BASE_URL.substring(0, API_BASE_URL.length - 1)+(card.default_image_url?card.default_image_url:card.images[0])}
+              src={
+                API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                (card.default_image_url
+                  ? card.default_image_url
+                  : card.images[0])
+              }
               addr={card.country + ", " + card.state + ", " + card.city}
               cost={card.price_per_night}
               rate={card.rate__avg ? card.rate__avg : card.rate}
@@ -238,9 +242,9 @@ class VillaCarousel extends Component {
           className={" mt-auto ml-5"}
           style={{ fontFamily: "cursive", color: "black" }}
         >
-          {this.props.title}
+          {this.props?.title}
         </h4>
-        {this.state.cards.length === 0 ? (
+        {this.state.cards?.length === 0 ? (
           <Empty
             className={"mt-4 mb-5 ml-auto mr-auto"}
             style={{ color: "black" }}

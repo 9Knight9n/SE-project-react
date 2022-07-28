@@ -59,7 +59,6 @@ class SearchPage extends Component {
         param + "&start_date=" + this.state.startDate.replaceAll("/", "-");
     if (this.state.endDate)
       param = param + "&end_date=" + this.state.endDate.replaceAll("/", "-");
-    console.log(param);
     let config = {
       method: "get",
       url: API_SEARCH_VILLA + param,
@@ -69,23 +68,16 @@ class SearchPage extends Component {
     };
     cards = await axios(config)
       .then(function (response) {
-        // console.log(JSON.stringify(response.data));
-        console.log(response.data.data);
         return response.data.data;
       })
       .catch(function (error) {
         console.log(error);
         return [];
       });
-    // cards = cardList
-    console.log(cards);
     this.forceUpdate();
-    if (cards.length) this.mapGoTo(cards[0].latitude, cards[0].longitude);
-    // this.setState({cards:cardList})
-    // console.log(this.state.country)
+    if (cards?.length) this.mapGoTo(cards[0].latitude, cards[0].longitude);
   }
   mapGoTo(x, y, index) {
-    console.log(index);
     if (index !== null) this.setState({ mapActiveIndex: index });
 
     center = fromLonLat([x, y]);
@@ -182,14 +174,14 @@ class SearchPage extends Component {
                 </RContext.Consumer>
               </RControl.RCustom>
               <RLayerVector zIndex={10}>
-                {cards.map((card, index) => this.renderAMap(card, index))}
-                {cards.map((card, index) => this.renderDMap(card, index))}
+                {cards?.map((card, index) => this.renderAMap(card, index))}
+                {cards?.map((card, index) => this.renderDMap(card, index))}
               </RLayerVector>
             </RMap>
           </div>
           <div className={"pr-5 pl-5 w-100"}>
             <CardGroup style={{ minWidth: "300px" }}>
-              {cards.map((card, index) => (
+              {cards?.map((card, index) => (
                 <div
                   className={
                     this.state.mapActiveIndex === index
@@ -219,7 +211,7 @@ class SearchPage extends Component {
               className={"ml-auto mr-auto mb-5"}
               style={{ width: "fit-content" }}
             >
-              {cards.length === 0 ? (
+              {cards?.length === 0 ? (
                 <Empty description={"Nothing found!"} />
               ) : null}
             </div>
@@ -227,7 +219,7 @@ class SearchPage extends Component {
               className={"ml-auto mr-auto mb-5"}
               style={{ width: "fit-content" }}
             >
-              {cards.length === 0 ? <text> Nothing found!</text> : null}
+              {cards?.length === 0 ? <text> Nothing found!</text> : null}
             </div>
           </div>
         </div>

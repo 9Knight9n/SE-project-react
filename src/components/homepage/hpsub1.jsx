@@ -348,8 +348,8 @@ class HPSub1 extends Component {
                   </RContext.Consumer>
                 </RControl.RCustom>
                 <RLayerVector zIndex={10}>
-                  {cards0.map((card, index) => this.renderAMap(card, index))}
-                  {cards0.map((card, index) => this.renderDMap(card, index))}
+                  {cards0?.map((card, index) => this.renderAMap(card, index))}
+                  {cards0?.map((card, index) => this.renderDMap(card, index))}
                 </RLayerVector>
               </RMap>
               {/*<button onClick={()=>this.mapGoTo(cards0[0].x,cards0[0].y)}>change</button>*/}
@@ -386,7 +386,7 @@ class HPSub1 extends Component {
                 tip="Loading..."
                 size="large"
               />
-            ) : cards0.length > 0 ? (
+            ) : cards0?.length > 0 ? (
               <Carousel
                 className={
                   "map-side-Carousel d-flex mt-auto mb-auto ml-auto mr-auto"
@@ -396,7 +396,7 @@ class HPSub1 extends Component {
                 interval={2000}
                 // onSlide={()=>this.forceUpdate()}
               >
-                {cards0.map((card) => (
+                {cards0?.map((card) => (
                   <Carousel.Item key={card.id}>
                     <div
                       style={{ background: "#364d79", borderRadius: "0.5rem" }}

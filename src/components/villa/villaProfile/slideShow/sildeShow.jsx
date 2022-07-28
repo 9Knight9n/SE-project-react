@@ -32,7 +32,6 @@ class SlideShow extends Component {
   }
 
   componentDidMount() {
-    console.log("hi");
     document.addEventListener(STORAGE_KEY + "screen-size-changed", (event) =>
       this.setState({ size: event.detail })
     );
