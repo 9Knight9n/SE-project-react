@@ -24,8 +24,8 @@ import { Option } from "antd/es/mentions";
 // import wildVilla from "../../assets/img/homepage-bg.jpg";
 import img1 from "../../assets/img/homepage-bg-1.jpg";
 import img2 from "../../assets/img/homepage-bg-2.jpg";
-import img3 from "../../assets/img/homepage-bg-3.jpg";
-import img4 from "../../assets/img/homepage-bg-4.jpg";
+import img3 from "../../assets/img/homepage-bg.jpg";
+import img4 from "../../assets/img/homepage-bg-6.jpg";
 
 const GeoCodio = require("geocodio-library-node");
 const geocoder = new GeoCodio("c616c01cb1104fe0d88ae0b003a06fb0dfdae80");
@@ -140,7 +140,7 @@ class HPSub1 extends Component {
   };
 
   componentDidMount() {
-    this.loadCards();
+    // this.loadCards();
   }
 
   async loadCards() {
@@ -406,7 +406,7 @@ class HPSub1 extends Component {
                         name={card.name}
                         id={card.villa_id}
                         src={
-                          API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
+                          // API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
                           card.default_image_url
                         }
                         addr={

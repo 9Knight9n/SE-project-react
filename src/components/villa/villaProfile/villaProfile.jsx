@@ -759,20 +759,14 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={
-                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
-                      this.state.images[0]
-                    }
+                    src={this.state.images[0]}
                   />
                 </div>
                 <div className="img2 col">
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={
-                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
-                      this.state.images[1]
-                    }
+                    src={this.state.images[1]}
                   />
                 </div>
               </div>
@@ -781,10 +775,7 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={
-                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
-                      this.state.images[2]
-                    }
+                    src={this.state.images[2]}
                   />
                   <button onClick={this.showGallary} className="btn btn-light">
                     Show all photos
@@ -794,10 +785,7 @@ class VillaProfile extends Component {
                   <img
                     onClick={this.showGallary}
                     alt="villa-image"
-                    src={
-                      API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
-                      this.state.images[3]
-                    }
+                    src={this.state.images[3]}
                   />
                 </div>
               </div>
@@ -810,8 +798,7 @@ class VillaProfile extends Component {
                     alt="profile-image"
                     src={
                       this.state.owner_image
-                        ? API_BASE_URL.substring(0, API_BASE_URL.length - 1) +
-                          this.state.owner_image
+                        ? this.state.owner_image
                         : sampleProfileImg
                     }
                   />
@@ -820,7 +807,7 @@ class VillaProfile extends Component {
                 <div className="villaProfile-title col-xl-8 col-lg-9 col-md-9 col-sm-7 col-7">
                   <h5>{this.state.placeName}</h5>
                   <div className="villaProfile-subtitle">
-                    <h6>hosted by {this.state.placeOwner}</h6>
+                    <h6>hosted by Jack</h6>
                   </div>
                 </div>
 
