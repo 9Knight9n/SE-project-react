@@ -50,26 +50,26 @@ class Chat extends Component {
   };
 
   loadChatList = async () => {
-    // let chatList = await axios
-    //   .get(API_GET_SHOW_CHAT_INFO_AND_LIST, {
-    //     headers: {
-    //       Authorization: "Token ".concat(getItem("user-token")),
-    //     },
-    //   })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       return res.data.data;
-    //       // this.loadData(res.data)
-    //     } else {
-    //       console.log("unknown status");
-    //       return [];
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     return [];
-    //   });
-    // this.setState({ chatList });
+    let chatList = await axios
+      .get(API_GET_SHOW_CHAT_INFO_AND_LIST, {
+        headers: {
+          Authorization: "Token ".concat(getItem("user-token")),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.data.data;
+          // this.loadData(res.data)
+        } else {
+          console.log("unknown status");
+          return [];
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        return [];
+      });
+    this.setState({ chatList });
   };
 
   showDrawer = async () => {

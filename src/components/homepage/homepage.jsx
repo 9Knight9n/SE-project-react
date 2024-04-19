@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import "./homepage.css";
 import { Link, Route, Switch } from "react-router-dom";
 import search_bg from "../../assets/img/homepage-bg.jpg";
-import search_1_bg from "../../assets/img/homepage-bg-4-4.jpg";
+import search_1_bg from "../../assets/img/homepage-bg-4.jpg";
 import host_bg from "../../assets/img/homepage-bg-7.jpg";
 // import map_bg from '../../assets/img/homepage-bg.jpg'
 import { Map, MapBrowserEvent } from "ol";
