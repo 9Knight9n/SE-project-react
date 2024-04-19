@@ -27,6 +27,7 @@ class SlideShow extends Component {
       this.setState({ show: this.props.show });
     }
     if (prevProps.images !== this.props.images) {
+      console.log(images);
       this.setState({ images: this.props.images });
     }
   }

@@ -41,29 +41,29 @@ class App extends Component {
     //     })
     // });
 
-    if (getItem("user-token")) {
-      var FormData = require("form-data");
-      var data = new FormData();
-      data.append(
-        "token",
-        sessionStorage.getItem(STORAGE_KEY + "firebase-token")
-      );
+    // if (getItem("user-token")) {
+    //   var FormData = require("form-data");
+    //   var data = new FormData();
+    //   data.append(
+    //     "token",
+    //     sessionStorage.getItem(STORAGE_KEY + "firebase-token")
+    //   );
 
-      var config = {
-        method: "post",
-        url: API_REGISTER_FIREBASE_TOKEN,
-        headers: {
-          Authorization: "Token ".concat(getItem("user-token")),
-        },
-        data: data,
-      };
+    //   var config = {
+    //     method: "post",
+    //     url: API_REGISTER_FIREBASE_TOKEN,
+    //     headers: {
+    //       Authorization: "Token ".concat(getItem("user-token")),
+    //     },
+    //     data: data,
+    //   };
 
-      axios(config)
-        .then(function (response) {})
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+    //   axios(config)
+    //     .then(function (response) {})
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // }
   }
 
   render() {

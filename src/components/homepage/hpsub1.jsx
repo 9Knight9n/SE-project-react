@@ -144,26 +144,25 @@ class HPSub1 extends Component {
   }
 
   async loadCards() {
-    let param = "?page=1&number_of_villa=1000&state=" + this.state.state;
-    let config = {
-      method: "get",
-      url: API_SEARCH_VILLA + param,
-      headers: {
-        // 'Authorization': 'Token '.concat(getItem('user-token')),
-      },
-    };
-
-    cards0 = await axios(config)
-      .then(function (response) {
-        // console.log(JSON.stringify(response.data));
-        // console.log(response.data.data);
-        return response.data.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-        return [];
-      });
-    this.forceUpdate();
+    // let param = "?page=1&number_of_villa=1000&state=" + this.state.state;
+    // let config = {
+    //   method: "get",
+    //   url: API_SEARCH_VILLA + param,
+    //   headers: {
+    //     // 'Authorization': 'Token '.concat(getItem('user-token')),
+    //   },
+    // };
+    // cards0 = await axios(config)
+    //   .then(function (response) {
+    //     // console.log(JSON.stringify(response.data));
+    //     // console.log(response.data.data);
+    //     return response.data.data;
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     return [];
+    //   });
+    // this.forceUpdate();
   }
 
   renderAMap = (card, id) => {
